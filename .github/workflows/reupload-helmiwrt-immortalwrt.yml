@@ -43,8 +43,9 @@ jobs:
           cd $GITHUB_WORKSPACE/kerjain
           export BUILD_TAG=$(curl -sL https://api.github.com/repos/helmiau/HelmiWrt-OS-Immortal/releases | jq -r 'first | .tag_name' | sed 's/helmiwrt-//g')
           echo "BUILD_TAG=$BUILD_TAG" >> $GITHUB_ENV
-          echo -e "$(curl -sL https://api.github.com/repos/helmiau/HelmiWrt-OS-Immortal/releases/tags/$BUILD_TAG | grep browser_download_url | sed -e 's/ //g' -e 's|\"||g' -e 's|browser_download_url:||g' | grep helmiwrt-)" > dl.txt
-          wget -i dl.txt
+          echo -e "$(curl -sL https://api.github.com/repos/helmiau/HelmiWrt-OS-Immortal/releases | grep browser_download_url | sed -e 's/ //g' -e 's|\"||g' -e 's|browser_download_url:||g' | grep helmiwrt-)" > all_releases.txt
+          echo -e "$( cat all_releases.txt | grep $BUILD_TAG )" > latest.txt
+          wget -i latest.txt
 
       - name: Checking Files
         id: checkfiles
