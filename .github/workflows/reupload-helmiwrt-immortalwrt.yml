@@ -40,6 +40,7 @@ jobs:
         id: download
         run: |
           cd $GITHUB_WORKSPACE/kerjain
+          echo -e "$(curl -sL https://api.github.com/repos/helmiau/HelmiWrt-OS-Immortal/releases | grep browser_download_url | sed -e 's/ //g' -e 's|\"||g' -e 's|browser_download_url:||g' | grep helmiwrt-)" > dl.txt
           wget -i dl.txt
 
       - name: Checking Files
