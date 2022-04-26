@@ -53,11 +53,13 @@ jobs:
           cd $GITHUB_WORKSPACE/kerjain
           echo -e "=== helmilog: Below is work/kerjain contents.. ==="
           ls -R
+          rm -f latest.txt all_releases.txt
           echo -e "=== helmilog: Upper is work/kerjain contents.. ==="
+          echo "::set-output name=status::success"
 
       - name: Deploy Files To Release
         uses: ncipollo/release-action@v1.8.0
-        if: env.FIRMWARE_RELEASE_UPLOAD == 'true'
+        if: steps.checkfiles.outputs.status == 'success' && !cancelled()
         with:
           name: HelmiWrt OS ${{ env.BUILD_DATE }}
           prerelease: true
