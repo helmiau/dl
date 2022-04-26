@@ -43,7 +43,7 @@ jobs:
           wget -i dl.txt
 
       - name: Checking Files
-        id: download
+        id: checkfiles
         run: |
           export BUILD_TAG=$(curl -sL https://api.github.com/repos/helmiau/HelmiWrt-OS-Immortal/releases | jq -r 'first | .tag_name' | sed 's/helmiwrt-//g')
           echo "BUILD_TAG=$BUILD_TAG" >> $GITHUB_ENV
