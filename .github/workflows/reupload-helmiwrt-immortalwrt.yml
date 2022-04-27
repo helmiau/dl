@@ -61,12 +61,19 @@ jobs:
         uses: ncipollo/release-action@v1.8.0
         if: steps.checkfiles.outputs.status == 'success' && !cancelled()
         with:
-          name: HelmiWrt OS ${{ env.BUILD_DATE }}
+          name: HelmiWrt OS ${{ env.BUILD_TAG }}
           prerelease: true
           allowUpdates: true
           replacesArtifacts: true
-          tag: helmiwrt-${{ env.BUILD_DATE }}
-          body: ${{ env.BUILD_DATE }}
+          tag: helmiwrt-${{ env.BUILD_TAG }}
           commit: ${{ env.CURRENT_BRANCH }}
           token: ${{ secrets.HELMIWRT_RW }}
           artifacts: ${{ env.WORK_PATH }}/kerjain/*
+          body: |
+            **HelmiWrt is custom OpenWrt build for**
+            - Raspberry Pi 1,2,3,4
+            - x86/64 (PC)
+            - NanoPi R2C, R2S and R4S
+            - OrangePi Zero, R1 Plus
+            - Set-top-box s9xxx chipset
+            [Donation here](https://www.helmiau.com/pay/index_en.html) • [Read more firmware info and guides](https://www.google.com/search?q=helmi+wrt+os)
