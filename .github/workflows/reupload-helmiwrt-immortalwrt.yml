@@ -68,7 +68,7 @@ jobs:
           tag: helmiwrt-${{ env.BUILD_TAG }}
           commit: ${{ env.CURRENT_BRANCH }}
           token: ${{ secrets.HELMIWRT_RW }}
-          artifacts: ${{ env.WORK_PATH }}/kerjain/*
+          artifacts: ${{ env.WORK_PATH }}/*
           body: |
             **HelmiWrt is custom OpenWrt build for**
             - Raspberry Pi 1,2,3,4
